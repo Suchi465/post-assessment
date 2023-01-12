@@ -1,12 +1,12 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 var results = [];
-function readCSV(req, res) {
-  fs.createReadStream("./data/data.csv")
-    .pipe(csv())
-    .on("data", (data) => results.push(data))
-    .on("end", () => {});
+fs.createReadStream("./data/data.csv")
+  .pipe(csv())
+  .on("data", (data) => results.push(data))
+  .on("end", () => {});
 
+function readCSV(req, res) {
   results.sort(function (a, b) {
     return a.age - b.age;
   });
